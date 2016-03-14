@@ -143,13 +143,13 @@ setup_user_paging()
 setup_kernel_paging()
 {
   //YOUR CODE: lec7-spoc challenge-part1
-	//PAGEæ˜¯4096
+	//PAGEÃ¦ËœÂ¯4096
   unsigned int i , j , beg , num;
   
   pg_dir = (int *)((((int)&pg_mem) + 4095) & -4096);
 	pg_dir = memset(pg_dir , 0 , PAGE);
 	num = 16;
-	beg = 768;//kernelµÄÆğÊ¼µØÖ·¿Õ¼ä0xc00ÓÒÒÆ22Î» ÊÇ768
+	beg = 768;//kernelèµ·å§‹åœ°å€0xc00å³ç§»22ä½ä¸º768
   for (i = 0 ; i < num ; i ++){
 		pg_tbl[i] = pg_dir + (i+1)*PAGE/4;
 		pg_dir[beg+i] = (unsigned int)(pg_tbl[i]) | PTE_P | PTE_W | PTE_U;
