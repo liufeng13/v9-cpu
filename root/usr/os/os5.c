@@ -138,6 +138,13 @@ alltraps()
 setup_user_paging()
 {
   //YOUR CODE: lec7-spoc challenge-part2
+  	int i;
+	int* pg_usr = pg_tbl[15] + 1024;
+	pg_dir[((uint)USRSTART >> 22)] = (int)(pg_usr) | PTE_P | PTE_W | PTE_U;
+	// Set up page table entry.
+	for (i = 0; i < 1024; i++) {
+	pg_usr[i] = (i << 12) | PTE_P | PTE_W | PTE_U;
+	}
 }
   
 setup_kernel_paging()
